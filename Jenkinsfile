@@ -4,10 +4,12 @@ pipeline {
     stages{
 
 
-        stage('SCM'){
+        stage('Git Checkout Sandbox Test'){
             steps{
                 script{
-                    println 'SCM'
+                    def url = 'https://github.com/sunk0015/Sandbox_test'
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                        userRemoteConfigs: [[url: url]]])
                 }
             }
         }
@@ -15,7 +17,7 @@ pipeline {
         stage('Test'){
             steps{
                 script{
-                    println 'Test'
+                    println "Test ${env.WORKSPACE}"
                 }
             }
         }
