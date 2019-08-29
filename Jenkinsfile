@@ -17,7 +17,7 @@ pipeline {
         stage('Test Master'){
             steps{
                 script{
-                    git checkout master
+                    sh "git checkout master"
                     sh "python ${env.WORKSPACE}/hello.py"
                 }
             }
@@ -26,7 +26,7 @@ pipeline {
         stage('Test dev'){
             steps{
                 script{
-                    git checkout dev
+                    sh "git checkout dev"
                     sh "python ${env.WORKSPACE}/hello.py"
                 }
             }
