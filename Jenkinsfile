@@ -8,15 +8,25 @@ pipeline {
             steps{
                 script{
                     def url = 'https://github.com/sunk0015/Sandbox_test'
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+                    checkout([$class: 'GitSCM', branches: [[name: '*/']],
                         userRemoteConfigs: [[url: url]]])
                 }
             }
         }
         
-        stage('Test'){
+        stage('Test Master'){
             steps{
                 script{
+                    git checkout master
+                    sh "python ${env.WORKSPACE}/hello.py"
+                }
+            }
+        }
+
+        stage('Test dev'){
+            steps{
+                script{
+                    git checkout dev
                     sh "python ${env.WORKSPACE}/hello.py"
                 }
             }
