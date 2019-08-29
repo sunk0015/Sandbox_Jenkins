@@ -17,7 +17,7 @@ pipeline {
         stage('Test'){
             steps{
                 script{
-                    println "Test ${env.WORKSPACE}/hello.py"
+                    sh "python ${env.WORKSPACE}/hello.py"
                 }
             }
         }
